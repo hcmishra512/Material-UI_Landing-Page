@@ -9,16 +9,12 @@ export default createTheme({
     common: {
       black: `${grayBlack}`,
       blue: `${cyanBlue}`,
-      grey: `${lightGrey}`,
     },
     primary: {
       main: `${grayBlack}`,
     },
     secondary: {
       main: `${cyanBlue}`,
-    },
-    tersary: {
-      main: `${lightGrey}`,
     },
   },
   typography: {

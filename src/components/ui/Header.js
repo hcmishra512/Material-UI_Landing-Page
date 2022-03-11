@@ -241,12 +241,12 @@ export default function Header(props) {
 
   // const [anchorEl, setAnchorEl] = useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
-  const [value, setValue] = useState(0);
+  // const [value, setValue] = useState(0);
   const [openQuestion, setOpenQuestion] = useState(false);
   const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(0);
 
   const handleChange = (e, newValue) => {
-    setValue(newValue);
+    props.setValue(newValue);
   };
 
   const handleClick = (e) => {
@@ -261,25 +261,25 @@ export default function Header(props) {
     {
       name: "New Questions",
       link: "/?show=recent-questions",
-      activeIndex: 11,
+      activeIndex: 5,
       selectedQuestionIndex: 0,
     },
     {
       name: "Trending Questions",
       link: "/?show=most-voted",
-      activeIndex: 11,
+      activeIndex: 5,
       selectedQuestionIndex: 1,
     },
     {
       name: "Must read Questions",
       link: "/?show=most-visited",
-      activeIndex: 11,
+      activeIndex: 5,
       selectedQuestionIndex: 2,
     },
     {
       name: "Hot Questions",
       link: "/?show=most-answered",
-      activeIndex: 11,
+      activeIndex: 5,
       selectedQuestionIndex: 3,
     },
   ];
@@ -292,23 +292,60 @@ export default function Header(props) {
   ];
 
   const routeDrawers = [
-    { name: "Home", Link: "/", activeIndex: 0 },
-    { name: "Communities", link: "/communities", activeIndex: 4 },
-    { name: "Group", link: "/group-page", activeIndex: 5 },
-    { name: "Add group", link: "/add-group", activeIndex: 6 },
-    { name: "Tags", link: "/tags", activeIndex: 7 },
-    { name: "Badges", link: "/badges", activeIndex: 8 },
-    { name: "Users", link: "/users", activeIndex: 9 },
-    { name: "Help", link: "/faqs", activeIndex: 10 },
-    { name: "Polls", link: "/question/polls", activeIndex: 10 },
+    { icon: <HomeIcon />, name: "Home", link: "/", activeIndex: 0 },
+    {
+      icon: <FolderSharedIcon />,
+      name: "Communities",
+      link: "/communities",
+      activeIndex: 4,
+    },
+    {
+      icon: <MenuBookIcon />,
+      name: "Questions",
+      link: "/questions",
+      activeIndex: 5,
+    },
+    {
+      icon: <VolumeDownRoundedIcon />,
+      name: "Polls",
+      link: "/question/polls",
+      activeIndex: 6,
+    },
+    { icon: <GroupIcon />, name: "Group", link: "/group-page", activeIndex: 7 },
+    {
+      icon: <GroupAddIcon />,
+      name: "Add group",
+      link: "/add-group",
+      activeIndex: 8,
+    },
+    { icon: <LocalOfferIcon />, name: "Tags", link: "/tags", activeIndex: 9 },
+    {
+      icon: <EmojiEventsIcon />,
+      name: "Badges",
+      link: "/badges",
+      activeIndex: 10,
+    },
+    {
+      icon: <SupervisedUserCircleIcon />,
+      name: "Users",
+      link: "/users",
+      activeIndex: 11,
+    },
+    { icon: <DonutSmallIcon />, name: "Help", link: "/faqs", activeIndex: 12 },
+    {
+      icon: <ShoppingCartIcon />,
+      name: "Buy Theme",
+      link: "/buy-theme",
+      activeIndex: 13,
+    },
   ];
 
   useEffect(() => {
-    [...menuQuestions, ...routeApps].forEach((route) => {
+    [...menuQuestions, ...routeApps, ...routeDrawers].forEach((route) => {
       switch (window.location.pathname) {
         case `${route.link}`:
-          if (value !== route.activeIndex) {
-            setValue(route.activeIndex);
+          if (props.value !== route.activeIndex) {
+            props.setValue(route.activeIndex);
             if (
               route.selectedQuestionIndex &&
               route.selectedQuestionIndex !== selectedQuestionIndex
@@ -321,30 +358,31 @@ export default function Header(props) {
           break;
       }
     });
-  }, [value, menuQuestions, selectedQuestionIndex, routeApps]);
+  }, [
+    props.value,
+    menuQuestions,
+    selectedQuestionIndex,
+    routeApps,
+    routeDrawers,
+    props,
+  ]);
 
   const tabs = (
     <React.Fragment>
       <Tabs
-        value={value}
+        value={props.value}
         onChange={handleChange}
         className={classes.tabContainer}
         indicatorColor="primary"
       >
-        <Tab className={classes.tab} component={Link} to="/" label="Home" />
-        <Tab
-          className={classes.tab}
-          component={Link}
-          to="/about-us"
-          label="About Us"
-        />
-        <Tab className={classes.tab} component={Link} to="/blog" label="Blog" />
-        <Tab
-          className={classes.tab}
-          component={Link}
-          to="/contact-us"
-          label="Contact Us"
-        />
+        {routeApps.map((routeApp, index) => (
+          <Tab
+            className={classes.tab}
+            component={Link}
+            to={routeApp.link}
+            label={routeApp.name}
+          />
+        ))}
       </Tabs>
 
       <div className={classes.search}>
@@ -368,7 +406,7 @@ export default function Header(props) {
         >
           Sign-In
         </Button>
-        <Button variant="contained" color="tersary" className={classes.button}>
+        <Button variant="contained" className={classes.button}>
           Sign-Up
         </Button>
       </Box>
@@ -385,338 +423,96 @@ export default function Header(props) {
         classes={{ paper: classes.drawer }}
       >
         <List className={classes.listItem}>
-          {/* {routeDrawers.map((routeDrawer) => (
-            <ListItem
-              divider
-              button
-              component={Link}
-              to={routeDrawer.link}
-              selected={value === routeDrawer.activeIndex}
-              onClick={() => {
-                setOpenDrawer(false);
-                setValue(routeDrawer.activeIndex);
-              }}
-            >
-              <ListItemIcon> </ListItemIcon>
-              <ListItemText
-                className={
-                  value === routeDrawer.activeIndex
-                    ? [classes.drawerItem, classes.drawerItemSelected]
-                    : classes.drawerItem
-                }
-                disableTypography
-              >
-                {routeDrawer.name}
-              </ListItemText>
-            </ListItem>
-          ))} */}
           <ListItem
             button
             onClick={() => {
               setOpenDrawer(false);
-              setValue(11);
+              props.setValue(11);
             }}
           >
+            <Toolbar />
             <ListItemIcon>
               <ClearIcon />
             </ListItemIcon>
           </ListItem>
-          <Toolbar />
+
           <Button variant="contained" className={classes.drawerButton}>
             Ask A Question
           </Button>
 
-          <ListItem
-            divider
-            button
-            component={Link}
-            to="/"
-            selected={value === 0}
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(0);
-            }}
-          >
-            <ListItemIcon>
-              <HomeIcon />
-            </ListItemIcon>
-            <ListItemText
-              className={
-                value === 0
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-              disableTypography
-            >
-              Home
-            </ListItemText>
-          </ListItem>
-
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(4);
-            }}
-            divider
-            button
-            component={Link}
-            to="/communities"
-            selected={value === 4}
-          >
-            <ListItemIcon>
-              <FolderSharedIcon />
-            </ListItemIcon>
-            <ListItemText
-              className={
-                value === 4
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-              disableTypography
-              primary="Communities"
-            />
-          </ListItem>
-
-          <ListItem button>
-            <ListItemIcon>
-              <MenuBookIcon />
-            </ListItemIcon>
-            <ListItemText
-              disableTypography
-              className={
-                value === 11
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-              primary="Questions"
-            />
-            <ListItemIcon
-              button
-              onClick={handleClick}
-              className={classes.arrowIcon}
-            >
-              {!openQuestion ? (
-                <KeyboardArrowDownIcon />
-              ) : (
-                <KeyboardArrowUpIcon />
-              )}
-            </ListItemIcon>
-          </ListItem>
-          <Collapse in={openQuestion}>
-            {menuQuestions.map((option, i) => (
+          <Divider />
+          {routeDrawers.map((routeDrawer, index) => (
+            <List>
               <ListItem
-                key={option}
+                divider
+                button
+                key={`${routeDrawer} ${routeDrawer.activeIndex}`}
                 component={Link}
-                to={option.link}
-                className={classes.nestedItem}
-                onClick={(event) => {
-                  handleDrawerQuestionClick(event, i);
-                  setValue(11);
-                  setOpenDrawer(false);
-                }}
-                selected={i === selectedQuestionIndex}
+                to={routeDrawer.link}
+                selected={props.value === routeDrawer.activeIndex}
+                onClick={() =>
+                  setOpenDrawer((routeDrawer) =>
+                    index === 2
+                      ? setOpenDrawer(true)
+                      : setOpenDrawer(false) &&
+                        props.setValue(routeDrawer.activeIndex)
+                  )
+                }
               >
-                {option.name}
+                <ListItemIcon
+                  className={
+                    props.value === routeDrawer.activeIndex
+                      ? [classes.drawerItem, classes.drawerItemSelected]
+                      : classes.drawerItem
+                  }
+                >
+                  {routeDrawer.icon}
+                </ListItemIcon>
+                <ListItemText
+                  className={
+                    props.value === routeDrawer.activeIndex
+                      ? [classes.drawerItem, classes.drawerItemSelected]
+                      : classes.drawerItem
+                  }
+                  disableTypography
+                >
+                  {routeDrawer.name}
+                </ListItemText>
+
+                <Box button onClick={handleClick} className={classes.arrowIcon}>
+                  {index === 2 ? (
+                    openQuestion ? (
+                      <KeyboardArrowUpIcon />
+                    ) : (
+                      <KeyboardArrowDownIcon />
+                    )
+                  ) : null}
+                </Box>
               </ListItem>
-            ))}
-          </Collapse>
-          <Divider />
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(12);
-            }}
-            button
-            component={Link}
-            to="/questions/?type=poll"
-            selected={value === 12}
-          >
-            <ListItemIcon>
-              <VolumeDownRoundedIcon />
-            </ListItemIcon>
-            <ListItemText
-              className={
-                value === 12
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-              disableTypography
-              primary="Polls"
-            />
-          </ListItem>
-          <Divider />
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(5);
-            }}
-            button
-            component={Link}
-            to="/group-page"
-            selected={value === 5}
-          >
-            <ListItemIcon>
-              <GroupIcon />
-            </ListItemIcon>
-            <ListItemText
-              className={
-                value === 5
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-              disableTypography
-              primary="Groups"
-            />
-          </ListItem>
-          <Divider />
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(6);
-            }}
-            divider
-            button
-            component={Link}
-            to="/add-group"
-            selected={value === 6}
-          >
-            <ListItemIcon>
-              <GroupAddIcon />
-            </ListItemIcon>
-            <ListItemText
-              className={
-                value === 6
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-              disableTypography
-              primary="Add group"
-            />
-          </ListItem>
 
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(7);
-            }}
-            divider
-            button
-            component={Link}
-            to="/tags"
-            selected={value === 7}
-          >
-            <ListItemIcon>
-              <LocalOfferIcon />
-            </ListItemIcon>
-            <ListItemText
-              className={
-                value === 7
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-              disableTypography
-              primary="Tags"
-            />
-          </ListItem>
+              <Collapse in={openQuestion} timeout="auto" unmountOnExit>
+                {index === 2
+                  ? menuQuestions.map((option, i) => (
+                      <ListItem
+                        key={`${option} ${i}`}
+                        component={Link}
+                        to={option.link}
+                        className={classes.nestedItem}
+                        onClick={(event) => {
+                          handleDrawerQuestionClick(event, i);
+                          props.setValue(5);
+                          setOpenDrawer(false);
+                        }}
+                        selected={i === selectedQuestionIndex}
+                      >
+                        {option.name}
+                      </ListItem>
+                    ))
+                  : null}
+              </Collapse>
+            </List>
+          ))}
 
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(8);
-            }}
-            divider
-            button
-            component={Link}
-            to="/badges"
-            selected={value === 8}
-          >
-            <ListItemIcon>
-              <EmojiEventsIcon />
-            </ListItemIcon>
-            <ListItemText
-              className={
-                value === 8
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-              disableTypography
-              primary="Badges"
-            />
-          </ListItem>
-
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(9);
-            }}
-            divider
-            button
-            component={Link}
-            to="/users"
-            selected={value === 9}
-          >
-            <ListItemIcon>
-              <SupervisedUserCircleIcon />
-            </ListItemIcon>
-            <ListItemText
-              className={
-                value === 9
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-              disableTypography
-              primary="Users"
-            />
-          </ListItem>
-
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(10);
-            }}
-            divider
-            button
-            component={Link}
-            to="/faqs"
-            selected={value === 10}
-          >
-            <ListItemIcon>
-              <DonutSmallIcon />
-            </ListItemIcon>
-            <ListItemText
-              className={
-                value === 10
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-              disableTypography
-              primary="Help"
-            />
-          </ListItem>
-
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(13);
-            }}
-            divider
-            button
-            component={Link}
-            to="/buy-theme"
-          >
-            <ListItemIcon>
-              <ShoppingCartIcon />
-            </ListItemIcon>
-            <ListItemText
-              className={
-                value === 13
-                  ? [classes.drawerItem, classes.drawerItemSelected]
-                  : classes.drawerItem
-              }
-              disableTypography
-              primary="Buy Theme"
-            />
-          </ListItem>
           <Box>
             <Grid item sm={6}>
               <InputBase
@@ -765,7 +561,7 @@ export default function Header(props) {
                 component={Link}
                 to="/"
                 disableRipple
-                onClick={() => setValue(0)}
+                onClick={() => props.setValue(0)}
                 className={classes.logoContainer}
               >
                 <img src={logo} alt="Company logo" className={classes.logo} />
@@ -781,19 +577,9 @@ export default function Header(props) {
       <Container>
         <div className={classes.extra}>
           <IconButton>
-            <searchIcon />
+            <SearchIcon />
           </IconButton>
         </div>
-        {/* <Box my={4}>
-          {[...new Array(50)]
-            .map(
-              () => `Cras mattis consectetur purus sit amet fermentum.
-Cras justo odio, dapibus ac facilisis in, egestas eget quam.
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`
-            )
-            .join("\n")}
-        </Box> */}
       </Container>
       <ScrollTop {...props}>
         <Fab

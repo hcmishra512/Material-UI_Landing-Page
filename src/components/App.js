@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ThemeProvider } from "@material-ui/styles";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
@@ -8,10 +8,12 @@ import Header from "./ui/Header";
 import Footer from "./ui/Footer";
 
 function App() {
+  const [value, setValue] = useState(0);
+
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
-        <Header />
+        <Header value={value} setValue={setValue} />
 
         <Switch>
           <Route
@@ -31,6 +33,7 @@ function App() {
             path="/communities"
             component={() => <div>Communities</div>}
           />
+          <Route exact path="/poll" component={() => <div>Pools</div>} />
           <Route exact path="/group-page" component={() => <div>Group</div>} />
           <Route
             exact
@@ -41,14 +44,18 @@ function App() {
           <Route exact path="/badges" component={() => <div>Badges</div>} />
           <Route exact path="/users" component={() => <div>Users</div>} />
           <Route exact path="/faqs" component={() => <div>Help</div>} />
+
+          <Route
+            exact
+            path="/buy-theme"
+            component={() => <div>Buy Theme</div>}
+          />
           {/* <Route exact path="/" component={() => <div>Home</div>} />
-          <Route exact path="/" component={() => <div>Home</div>} />
-          <Route exact path="/" component={() => <div>Home</div>} />
           <Route exact path="/" component={() => <div>Home</div>} />
           <Route exact path="/" component={() => <div>Home</div>} />
           <Route exact path="/" component={() => <div>Home</div>} /> */}
         </Switch>
-        <Footer />
+        <Footer value={value} setValue={setValue} />
       </BrowserRouter>
     </ThemeProvider>
   );

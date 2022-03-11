@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
 
 const message = `Discy is a social questions & Answers Engine  which will help you establis your community and connect with other people.`;
 
-export default function Footer() {
+export default function Footer(props) {
   const classes = useStyles();
 
   return (
@@ -105,15 +105,28 @@ export default function Footer() {
               <Grid item className={classes.firstItem}>
                 About Us
               </Grid>
-              <Grid item component={Link} to="/users" className={classes.link}>
+              <Grid
+                item
+                component={Link}
+                onClick={() => props.setValue(11)}
+                to="/users"
+                className={classes.link}
+              >
                 Meet The Team
               </Grid>
-              <Grid item component={Link} to="/blog" className={classes.link}>
+              <Grid
+                item
+                component={Link}
+                onClick={() => props.setValue(2)}
+                to="/blog"
+                className={classes.link}
+              >
                 Blog
               </Grid>
               <Grid
                 item
                 component={Link}
+                onClick={() => props.setValue(1)}
                 to="/about-us"
                 className={classes.link}
               >
@@ -122,6 +135,7 @@ export default function Footer() {
               <Grid
                 item
                 component={Link}
+                onClick={() => props.setValue(3)}
                 to="/contact-us"
                 className={classes.link}
               >
@@ -189,42 +203,71 @@ export default function Footer() {
                     </ListItemIcon>
                   </ListItem>
                 </Grid>
-                <Grid>
+                <Grid
+                  item
+                  component={"a"}
+                  href="http://www.twitter.com"
+                  rel="twitter"
+                  // rel="noopener noreferrer"
+                  target="_blank"
+                >
                   <ListItem button disableRipple className={classes.listItem}>
                     <ListItemIcon item className={classes.icon}>
                       <TwitterIcon />
                     </ListItemIcon>
                   </ListItem>
                 </Grid>
-                <Grid>
+                <Grid
+                  item
+                  component={"a"}
+                  href="http://www.linkedin.com"
+                  rel="linkedin"
+                  // rel="noopener noreferrer"
+                  target="_blank"
+                >
                   <ListItem button disableRipple className={classes.listItem}>
                     <ListItemIcon item className={classes.icon}>
                       <LinkedInIcon />
                     </ListItemIcon>
                   </ListItem>
                 </Grid>
-                <Grid>
+                <Grid
+                  item
+                  component={"a"}
+                  href="http://www.cloud.google.com"
+                  rel="cloud-google"
+                  // rel="noopener noreferrer"
+                  target="_blank"
+                >
                   <ListItem button disableRipple className={classes.listItem}>
                     <ListItemIcon item className={classes.icon}>
                       <CloudQueueIcon />
                     </ListItemIcon>
                   </ListItem>
                 </Grid>
-                <Grid>
+                <Grid
+                  item
+                  component={"a"}
+                  href="http://www.rss.com"
+                  rel="rss-feed"
+                  // rel="noopener noreferrer"
+                  target="_blank"
+                >
                   <ListItem button disableRipple className={classes.listItem}>
                     <ListItemIcon item className={classes.icon}>
                       <RssFeedIcon />
                     </ListItemIcon>
                   </ListItem>
                 </Grid>
-                <Grid>
-                  <ListItem
-                    button
-                    className={classes.listItem}
-                    component={Link}
-                    to="/home"
-                    disableRipple
-                  >
+                <Grid
+                  item
+                  component={"a"}
+                  href="http://tiktok.com"
+                  rel="tiktok"
+                  // rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  <ListItem button className={classes.listItem} disableRipple>
                     <ListItemIcon item className={classes.icon}>
                       <MusicNoteOutlinedIcon />
                     </ListItemIcon>

@@ -6,6 +6,7 @@ import theme from "./ui/Theme";
 import Header from "./ui/Header";
 
 import Footer from "./ui/Footer";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   const [value, setValue] = useState(0);
@@ -14,13 +15,15 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Header value={value} setValue={setValue} />
-
+        <LandingPage />
         <Switch>
+          {/* <Route exact path="/" component={LandingPage} /> */}
           <Route
             exact
             path="/"
-            component={() => <div style={{ height: "2000px" }}>Home</div>}
+            component={() => <div style={{ height: "2000px" }}>home</div>}
           />
+
           <Route exact path="/about-us" component={() => <div>About Us</div>} />
           <Route exact path="/blog" component={() => <div>Blog</div>} />
           <Route

@@ -2,7 +2,6 @@ import { createTheme } from "@material-ui/core/styles";
 
 const grayBlack = "#1b211d";
 const cyanBlue = "#0693e3";
-const lightGrey = "#424242";
 
 export default createTheme({
   palette: {
@@ -17,6 +16,7 @@ export default createTheme({
       main: `${cyanBlue}`,
     },
   },
+
   typography: {
     tab: {
       fontFamily: "Raleway",

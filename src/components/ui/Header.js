@@ -9,6 +9,7 @@ import {
   Divider,
   Collapse,
   Grid,
+  Paper,
 } from "@material-ui/core";
 import { makeStyles, alpha, useTheme } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
@@ -44,6 +45,7 @@ import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
 import SupervisedUserCircleIcon from "@material-ui/icons/SupervisedUserCircle";
 import DonutSmallIcon from "@material-ui/icons/DonutSmall";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import HelpIcon from "@material-ui/icons/Help";
 
 function HideOnScroll(props) {
   const { children } = props;
@@ -84,34 +86,41 @@ function ScrollTop(props) {
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
     ...theme.mixins.toolbar,
-    morginBottom: "2em",
+    morginBottom: "2rem",
     [theme.breakpoints.down("md")]: {
-      marginBottom: "1em",
+      marginBottom: "0em",
     },
+  },
+  appBar: {
+    [theme.breakpoints.down("md")]: {},
   },
   logo: {
     height: "3em",
     [theme.breakpoints.down("md")]: {
-      align: "center",
+      justifyContent: "center",
     },
   },
   logoContainer: {
     paddingTop: " 20px",
     paddingBottom: "20px",
+    [theme.breakpoints.down("md")]: {
+      marginLeft: "auto",
+      marginRight: "auto",
+      paddingLeft: "25px",
+    },
+
     "&:hover": {
       backgroundColor: "transparent",
     },
-    [theme.breakpoints.down("md")]: {
-      paddingLeft: "130px",
-    },
   },
   tabContainer: {
-    marginLeft: "auto",
+    // marginLeft: "auto",
   },
   tab: {
     ...theme.typography.tab,
     minWidth: 10,
-    marginLeft: "25px",
+    marginLeft: "10px",
+    marginRight: "10px",
     textTransform: "none",
     "&:hover": {
       backgroundColor: "#000000",
@@ -123,30 +132,40 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "2px",
     marginLeft: "20px",
     marginRight: "20px",
+
     height: "2rem",
     width: "8em",
-    paddingLeft: "25px",
-    paddingRight: "25px",
-
+    paddingLeft: "20px",
+    paddingRight: "20px",
     "&:hover": {
       backgroundColor: "rgb(251, 105, 98)",
     },
+  },
+  buttonTwo: {
+    backgroundColor: "#808080",
+    color: "inherit",
   },
   root: {
     position: "fixed",
     bottom: theme.spacing(4),
     right: theme.spacing(4),
   },
-  contain: {
-    [theme.breakpoints.up("md")]: {
-      marginLeft: "174.6px",
-      marginRight: "174.6px",
+  gridContainer: {
+    [theme.breakpoints.down("md")]: {
+      marginLeft: "auto",
     },
   },
-
+  contain: {
+    marginLeft: "174.6px",
+    marginRight: "174.6px",
+    [theme.breakpoints.down("md")]: {
+      marginLeft: "1rem",
+      marginRight: "1rem",
+    },
+  },
   search: {
     position: "relative",
-    paddingLeft: "5px",
+    paddingLeft: "8px",
     color: "white",
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -154,7 +173,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
     marginLeft: 0,
-
     width: "100%",
     [theme.breakpoints.up("xs")]: {
       marginLeft: theme.spacing(1),
@@ -162,29 +180,30 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   searchIcon: {
-    padding: theme.spacing(0, 18),
+    padding: theme.spacing(0, 20),
     height: "100%",
     position: "absolute",
     pointerEvents: "none",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    justify: "center",
   },
-
-  minuIcon: {
-    height: "30px",
-    width: "30px",
+  inputRoot: {
+    color: "inherit",
+  },
+  menuIcon: {
+    height: "1.5em",
+    width: "1.5em",
     marginRight: "auto",
   },
   drawerIconContainer: {
-    marginLeft: "auto",
+    display: "center",
     "&: hover": {
       backgroundColor: "transparent",
     },
   },
   drawer: {
-    // backgroundColor: theme.palette.common.blue,
-    width: "350px",
+    width: "20em",
   },
   drawerButton: {
     paddingLeft: theme.spacing(9.4),
@@ -206,18 +225,19 @@ const useStyles = makeStyles((theme) => ({
     color: "#03a9f4",
   },
   lockIcon: {
-    height: "30px",
-    width: "30px",
+    height: "2rem",
+    width: "2rem",
   },
   lockContainer: {
     marginLeft: "auto",
+
     "&: hover": {
       backgroundColor: "transparent",
     },
   },
   listItem: {
-    marginLeft: theme.spacing(5),
-    marginRight: theme.spacing(5),
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
   },
   nestedItem: {
     ...theme.typography.tab,
@@ -227,6 +247,19 @@ const useStyles = makeStyles((theme) => ({
   },
   arrowIcon: {
     marginLeft: theme.spacing(20),
+  },
+  gridPaper: {
+    marginLeft: "1rem",
+    marginRight: "0rem",
+  },
+  paper: {
+    padding: theme.spacing(2),
+    justifyContent: "space-between",
+    display: "flex",
+    paddingLeft: " 10px",
+    paddingRight: "10px",
+    textTransform: "none",
+    // color: theme.palette.text.secondary,
   },
 }));
 
@@ -239,7 +272,6 @@ export default function Header(props) {
 
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
-  // const [anchorEl, setAnchorEl] = useState(null);
   const [openDrawer, setOpenDrawer] = useState(false);
   // const [value, setValue] = useState(0);
   const [openQuestion, setOpenQuestion] = useState(false);
@@ -377,6 +409,7 @@ export default function Header(props) {
       >
         {routeApps.map((routeApp, index) => (
           <Tab
+            key={index}
             className={classes.tab}
             component={Link}
             to={routeApp.link}
@@ -406,7 +439,12 @@ export default function Header(props) {
         >
           Sign-In
         </Button>
-        <Button variant="contained" className={classes.button}>
+      </Box>
+      <Box>
+        <Button
+          variant="contained"
+          className={[classes.button, classes.buttonTwo]}
+        >
           Sign-Up
         </Button>
       </Box>
@@ -529,16 +567,15 @@ export default function Header(props) {
           </Box>
         </List>
       </SwipeableDrawer>
-      <div className={classes.div}>
-        <IconButton
-          color="inherit"
-          className={classes.drawerIconContainer}
-          onClick={() => setOpenDrawer(!openDrawer)}
-          disableRipple
-        >
-          <DehazeIcon className={classes.minuIcon} />
-        </IconButton>
-      </div>
+
+      <IconButton
+        color="inherit"
+        className={classes.drawerIconContainer}
+        onClick={() => setOpenDrawer(!openDrawer)}
+        disableRipple
+      >
+        <DehazeIcon className={classes.menuIcon} />
+      </IconButton>
     </React.Fragment>
   );
 
@@ -550,13 +587,33 @@ export default function Header(props) {
     </React.Fragment>
   );
 
+  const grid = (
+    <React.Fragment>
+      <Grid container>
+        <Grid item xs={12} className={classes.gridPaper}>
+          <Paper className={classes.paper}>
+            <Button component={Link} to="/">
+              <SearchIcon />
+              Search
+            </Button>
+            <Button component={Link} to="/">
+              <HelpIcon />
+              Ask A Question
+            </Button>
+          </Paper>
+        </Grid>
+      </Grid>
+    </React.Fragment>
+  );
+
   return (
     <React.Fragment>
       <HideOnScroll>
-        <AppBar position="fixed">
-          <Box className={classes.contain}>
+        <AppBar position="fixed" className={classes.appBar}>
+          <Grid item className={classes.contain}>
             <Toolbar disableGutters>
               {matches ? drawer : null}
+
               <Button
                 component={Link}
                 to="/"
@@ -569,18 +626,16 @@ export default function Header(props) {
 
               {matches ? lock : tabs}
             </Toolbar>
-          </Box>
+          </Grid>
         </AppBar>
       </HideOnScroll>
-      <Toolbar id="back-to-top-anchor" />
+      {/* <Toolbar id="back-to-top-anchor" /> */}
 
-      <Container>
-        <div className={classes.extra}>
-          <IconButton>
-            <SearchIcon />
-          </IconButton>
-        </div>
-      </Container>
+      {/* <Container> */}
+      <div className={classes.extra}>
+        <IconButton>{/* <SearchIcon /> */}</IconButton>
+      </div>
+      {/* </Container> */}
       <ScrollTop {...props}>
         <Fab
           color="secondary"
@@ -591,7 +646,8 @@ export default function Header(props) {
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
-      {/* <div className={classes.toolbarMargin}/> */}
+      <div className={classes.toolbarMargin} />
+      {matches ? grid : null}
     </React.Fragment>
   );
 }

@@ -10,6 +10,7 @@ import {
   ListItemText,
   ListItemIcon,
   Typography,
+  Tooltip,
 } from "@material-ui/core";
 import { Menu, MenuItem, Hidden, List, ListItem } from "@material-ui/core";
 import actionPic from "../../assets/action.png";
@@ -32,6 +33,9 @@ import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import InsertCommentIcon from "@material-ui/icons/InsertComment";
 import ChildCareIcon from "@material-ui/icons/ChildCare";
+import RoomIcon from "@material-ui/icons/Room";
+import HowToRegIcon from "@material-ui/icons/HowToReg";
+import AssignmentReturnedIcon from "@material-ui/icons/AssignmentReturned";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -114,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerItemSelected: {
     opacity: 1,
-    color: "#03a9f4",
+    color: "#3d5afe",
   },
   nestedItem: {
     // ...theme.typography.tab,
@@ -165,6 +169,45 @@ const useStyles = makeStyles((theme) => ({
   martin: {
     marginBottom: "2rem",
   },
+  avtarBox: {
+    justifyContent: "center",
+    display: "flex",
+    marginTop: "1rem",
+  },
+  tooltipBox: {
+    backgroundColor: "#efebe9",
+    color: "#424242",
+    margin: "1rem",
+    padding: "10px",
+    fontSize: "12px",
+  },
+  tooltipItem: {
+    padding: "4px",
+  },
+  tooltipBtn: {
+    margin: "15px",
+    backgroundColor: "#3d5afe",
+    paddingLeft: "4.3rem",
+    paddingRight: "4.3rem",
+    color: "#fafafa",
+    "&:hover": {
+      backgroundColor: "#ef5350",
+    },
+  },
+  tooltip: {
+    backgroundColor: theme.palette.common.white,
+  },
+
+  roomIcon: {
+    width: "15px",
+    height: "12px",
+  },
+  large: {
+    width: theme.spacing(9),
+    height: theme.spacing(9),
+    // align: "center",
+  },
+
   itemIcom: {
     paddingTop: "3rem",
     paddingLeft: "5px",
@@ -173,6 +216,9 @@ const useStyles = makeStyles((theme) => ({
   aerrow: {
     width: "3rem",
     height: "3rem",
+    "&:hover": {
+      color: "#3d5afe",
+    },
   },
   num: {
     paddingLeft: "7px",
@@ -187,9 +233,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   authorHope: {
-    // color: "secondary",
-    // textTransform: "none",
-    // paddingRight: "20px",
+    color: "#3d5afe",
+    textTransform: "none",
+    marginRight: "10px",
+    "&:hover": {
+      color: "#212121",
+    },
   },
   quest: {
     width: "497px",
@@ -211,7 +260,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "5px",
     fontWeight: 900,
     "&:hover": {
-      color: "#03a9f4",
+      color: "#3d5afe",
     },
   },
   subtitle: {
@@ -223,7 +272,7 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "none",
     marginBottom: "2rem",
     "&:hover": {
-      backgroundColor: "#03a9f4",
+      backgroundColor: "#3d5afe",
     },
   },
   footer: {
@@ -253,7 +302,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     textTransform: "none",
     "&:hover": {
-      backgroundColor: "#03a9f4",
+      backgroundColor: "#3d5afe",
     },
   },
   rightContainer: {
@@ -261,7 +310,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: "3147.200px",
     position: "relative",
     overflow: "visible",
-    float: "rigth",
+    // float: "rigth",
     display: "flex",
     boxSizing: "border-box",
     minHeight: "1px",
@@ -270,57 +319,56 @@ const useStyles = makeStyles((theme) => ({
     // },
   },
 
-  // tab: {
-  //   fontFamily: "Robodo",
-  //   textTransform: "none",
-  //   fontWeight: "700",
-  //   fontSize: "1rem",
-  //   minWidth: 5,
-  //   marginLeft: "-10px",
+  tab: {
+    fontFamily: "Robodo",
+    display: "absolute",
+    textTransform: "none",
+    fontWeight: "900",
+    fontSize: "0.95rem",
+    minWidth: "0px",
+    marginLeft: "-10px",
+  },
+  // itemIcon: {
+  //   display: "block",
+  //   marginTop: "3rem",
+  //   [theme.breakpoints.down("md")]: {
+  //     // display: "flex",
+  //     direction: "row",
+  //     marginTop: "0rem",
+  //     marginLeft: "3rem",
+  //   },
   // },
-  // indicator: {
-  //   backgroundColor: "secondary",
-  //   height: ".5rem",
-  //   maxWidth: 50,
+  // smallContainer: {
+  //   direction: "column",
+  //   xs: 2,
+  //   [theme.breakpoints.down("md")]: {
+  //     direction: "column",
+  //     display: "contents",
+  //     height: "70px",
+  //     minWidth: "320px",
+  //     xs: 12,
+  //   },
   // },
 }));
-const StyledTabs = withStyles({
-  indicator: {
-    display: "flex",
-    justifyContent: "center",
-    // backgroundColor: "transparent",
-    // padding: "5px",
-    height: ".2rem",
-    "& > span": {
-      maxWidth: "60",
-      maxHeiht: ".5rem",
-      width: "100%",
-      backgroundColor: "#635ee7",
-    },
-  },
-})((props) => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
 
-const StyledTab = withStyles((theme) => ({
-  root: {
-    borderBottom: "2px solid #e8e8e8",
-    textTransform: "none",
-    color: "inherit",
-    fontWeight: theme.typography.fontWeightRegular,
-    fontSize: theme.typography.pxToRem(15),
-    marginLeft: "-10px",
-    // marginRight: theme.spacing(1),
-    minWidth: 5,
-    "&:focus": {
-      opacity: 1,
-    },
+const StyleTooltip = withStyles((theme) => ({
+  tooltip: {
+    backgroundColor: "#f5f5f9",
+    color: "rgba(0, 0, 0, 0.87)",
+    maxWidth: 280,
+    fontSize: theme.typography.pxToRem(12),
+    border: "1px solid #283593",
+    borderRadius: "10px",
   },
-}))((props) => <Tab disableRipple {...props} />);
+}))(Tooltip);
 
-export default function LandingPage() {
+const message = "Sorry, you cannot vote the same question more then once.";
+
+export default function LandingPage(props) {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [openDrawer, setOpenDrawer] = useState(false);
   const [value, setValue] = useState(0);
-
+  const [number, setNumber] = useState(0);
+  const [questionIndex, setQuestionIndex] = useState(0);
   const classes = useStyles();
 
   const handleClick = (event) => {
@@ -329,6 +377,29 @@ export default function LandingPage() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleChange = (e, value) => {
+    setValue(value);
+  };
+  const handleQuestionClick = (e, i) => {
+    setQuestionIndex(i);
+  };
+
+  const increment = () => {
+    if (number <= 2) {
+      setNumber(number + 1);
+    } else {
+      alert(message);
+      setNumber(2);
+    }
+  };
+  const decrement = () => {
+    if (number > 0) {
+      setNumber(number - 1);
+    } else {
+      alert(message);
+      setNumber(0);
+    }
   };
 
   const menuQuestions = [
@@ -466,23 +537,15 @@ export default function LandingPage() {
                         component={Link}
                         to={routeDrawer.link}
                         selected={value === routeDrawer.activeIndex}
-                        // onClick={() =>
-                        //   setOpenDrawer((routeDrawer) =>
-                        //     index === 2
-                        //       ? setOpenDrawer(true)
-                        //       : setOpenDrawer(false) &&
-                        //         setValue(routeDrawer.activeIndex)
-                        //   )
-                        // }
+                        onClick={() => setValue(routeDrawer.activeIndex)}
                       >
                         <ListItemIcon
                           disableRipple
-
-                          // className={
-                          //   value === routeDrawer.activeIndex
-                          //     ? [classes.drawerItem, classes.drawerItemSelected]
-                          //     : classes.drawerItem
-                          // }
+                          className={
+                            value === routeDrawer.activeIndex
+                              ? [classes.drawerItem, classes.drawerItemSelected]
+                              : classes.drawerItem
+                          }
                         >
                           {routeDrawer.icon}
                         </ListItemIcon>
@@ -506,11 +569,11 @@ export default function LandingPage() {
                               to={option.link}
                               className={classes.nestedItem}
                               onClick={(event) => {
-                                // handleDrawerQuestionClick(event, i);
+                                handleQuestionClick(event, i);
                                 setValue(5);
-                                setOpenDrawer(false);
+                                // setOpenDrawer(false);
                               }}
-                              // selected={i === selectedQuestionIndex}
+                              selected={i === questionIndex}
                             >
                               {option.name}
                             </ListItem>
@@ -528,46 +591,85 @@ export default function LandingPage() {
               <Box display="flex" justifyContent="center">
                 <Box boxShadow={4} width={689} className={classes.centerBox}>
                   <Box borderBottom={1} borderColor="grey.500">
-                    <StyledTabs
+                    <Tabs
+                      disableRipple
                       className={classes.tabContainer}
-                      value={1}
-                      // value={value}
-                      // onChange={handleChange}
-                      // indicatorColor="secondary"
+                      value={value}
+                      onChange={handleChange}
                       textColor="primary"
                     >
-                      <StyledTab
+                      <Tab
                         className={classes.tab}
+                        component={Link}
+                        to="/recent-questions"
                         label="Recent Questions"
                       />
-                      <StyledTab
+                      <Tab
                         className={classes.tab}
+                        component={Link}
+                        to="/most-answered"
                         label="Most Answered"
                       />
-                      <StyledTab
+                      <Tab
                         className={classes.tab}
+                        component={Link}
+                        to="/bump-question"
                         label="Bump Question"
                       />
-                      <StyledTab className={classes.tab} label="Answers" />
-                      <StyledTab className={classes.tab} label="Most Visited" />
+                      <Tab
+                        className={classes.tab}
+                        component={Link}
+                        to="/answers"
+                        label="Answers"
+                      />
+                      <Tab
+                        className={classes.tab}
+                        component={Link}
+                        to="/most-visited"
+                        label="Most Visited"
+                      />
+
                       <IconButton
-                        aria-label="display more actions"
-                        edge="end"
-                        color="inherit"
-                        onClick={handleClick}
+                        aria-owns={anchorEl ? "sample-menu" : undefined}
+                        area-haspopup={anchorEl ? "true" : undefined}
+                        className={classes.tab}
+                        component={Link}
+                        onMouseOver={(event) => handleClick(event)}
                       >
                         <MoreHorizIcon />
                       </IconButton>
+
                       <Menu
                         anchorEl={anchorEl}
                         keepMounted
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
+                        MenuListProps={{ onMouseLeave: handleClose }}
                       >
-                        <MenuItem onClick={handleClose}>Most Voted</MenuItem>
-                        <MenuItem onClick={handleClose}>No Answer</MenuItem>
+                        <MenuItem
+                          onClick={() => {
+                            handleClose();
+                            setValue(5);
+                          }}
+                          className={classes.tab}
+                          component={Link}
+                          to="/most-voted"
+                        >
+                          Most Voted
+                        </MenuItem>
+                        <MenuItem
+                          onClick={() => {
+                            handleClose();
+                            setValue(5);
+                          }}
+                          className={classes.tab}
+                          component={Link}
+                          to="/no-answer"
+                        >
+                          No Answer
+                        </MenuItem>
                       </Menu>
-                    </StyledTabs>
+                    </Tabs>
                   </Box>
 
                   {/************* First center starting Blog ****************/}
@@ -580,17 +682,110 @@ export default function LandingPage() {
                         borderBottom={1}
                         className={classes.innerTwo}
                       >
-                        <Grid container direction="column" xs={2}>
+                        <Grid
+                          container
+                          direction="column"
+                          xs={2}
+                          className={classes.smallContainer}
+                        >
                           <Grid container className={classes.martin}>
-                            <Box
-                              border={2}
-                              width="2.5rem"
-                              height="2.5rem"
-                              borderRadius="50%"
-                              padding="2px"
+                            {/* *************Tooltip Area start************** */}
+                            <StyleTooltip
+                              title={
+                                <React.Fragment>
+                                  <Box
+                                    item
+                                    display="flex"
+                                    className={classes.avtarBox}
+                                  >
+                                    <Box
+                                      item
+                                      border={2}
+                                      width="4.5rem"
+                                      height="4.5rem"
+                                      borderRadius="50%"
+                                      color="#3d5afe"
+                                      padding="2px"
+                                    >
+                                      <Avatar
+                                        alt="Martin Hope"
+                                        src={teamTwo}
+                                        className={classes.large}
+                                      />
+                                    </Box>
+                                  </Box>
+                                  <Box
+                                    container
+                                    direction="column"
+                                    className={classes.avtarBox}
+                                  >
+                                    <Box item>
+                                      <Button className={classes.authorHope}>
+                                        Martin Hope
+                                      </Button>
+                                      <h2 className={classes.avtarBox}>
+                                        <RoomIcon
+                                          className={classes.roomIcon}
+                                        />
+                                        Damita, Egypt
+                                      </h2>
+                                    </Box>
+                                  </Box>
+                                  <Box
+                                    container
+                                    direction="column"
+                                    className={classes.tooltipBox}
+                                  >
+                                    <Box item className={classes.tooltipItem}>
+                                      <MenuBookIcon
+                                        className={classes.roomIcon}
+                                      />
+                                      3 Questions
+                                    </Box>
+                                    <Box item className={classes.tooltipItem}>
+                                      <InsertCommentIcon
+                                        className={classes.roomIcon}
+                                      />
+                                      0 Answers
+                                    </Box>
+                                    <Box item className={classes.tooltipItem}>
+                                      <HowToRegIcon
+                                        className={classes.roomIcon}
+                                      />
+                                      0 Best Answers
+                                    </Box>
+                                    <Box item className={classes.tooltipItem}>
+                                      <AssignmentReturnedIcon
+                                        className={classes.roomIcon}
+                                      />
+                                      756 Points
+                                    </Box>
+                                  </Box>
+
+                                  <Button
+                                    variant="Contained"
+                                    className={classes.tooltipBtn}
+                                  >
+                                    View Profile
+                                  </Button>
+                                </React.Fragment>
+                              }
+                              Add
+                              arrow
+                              interactive
                             >
-                              <Avatar alt="Martin Hope" src={teamTwo} />
-                            </Box>
+                              <Box
+                                border={2}
+                                width="2.5rem"
+                                height="2.5rem"
+                                borderRadius="50%"
+                                padding="2px"
+                              >
+                                <Avatar alt="Martin Hope" src={teamTwo} />
+                              </Box>
+                            </StyleTooltip>
+
+                            {/* ************ Tooltip area End ********** */}
                           </Grid>
 
                           <Grid
@@ -599,20 +794,24 @@ export default function LandingPage() {
                             marginTop="3rem"
                             className={classes.itemIcon}
                           >
-                            <ArrowDropUpIcon className={classes.aerrow} />
-                            <Typography className={classes.num}>603</Typography>
-                            <ArrowDropDownIcon className={classes.aerrow} />
+                            <ArrowDropUpIcon
+                              className={classes.aerrow}
+                              onClick={increment}
+                            />
+                            <Typography className={classes.num}>
+                              {603 + number}
+                            </Typography>
+                            <ArrowDropDownIcon
+                              className={classes.aerrow}
+                              onClick={decrement}
+                            />
                           </Grid>
                         </Grid>
                         <Grid container direction="column" sx={10}>
                           <Grid item className={classes.blogUp}>
                             <Grid item>
                               <Box item className={classes.quest}>
-                                <Button
-                                  classesName={classes.authorHope}
-                                  color="secondary"
-                                  marginRight="10px"
-                                >
+                                <Button className={classes.authorHope}>
                                   Martin Hope
                                 </Button>
                                 <span
@@ -685,12 +884,221 @@ export default function LandingPage() {
                           </Box>
                         </Grid>
                       </Box>
+
+                      {/************* First center End Blog ****************/}
+
+                      {/************* Second center starting Blog ****************/}
+
+                      <Box
+                        display={"flex"}
+                        container
+                        borderBottom={1}
+                        className={classes.innerTwo}
+                      >
+                        <Grid container direction="column" xs={2}>
+                          <Grid container className={classes.martin}>
+                            {/* *************Tooltip Area start************** */}
+                            <StyleTooltip
+                              title={
+                                <React.Fragment>
+                                  <Box
+                                    item
+                                    display="flex"
+                                    className={classes.avtarBox}
+                                  >
+                                    <Box
+                                      item
+                                      border={2}
+                                      width="4.5rem"
+                                      height="4.5rem"
+                                      borderRadius="50%"
+                                      color="#3d5afe"
+                                      padding="2px"
+                                    >
+                                      <Avatar
+                                        alt="Martin Hope"
+                                        src={teamTwo}
+                                        className={classes.large}
+                                      />
+                                    </Box>
+                                  </Box>
+                                  <Box
+                                    container
+                                    direction="column"
+                                    className={classes.avtarBox}
+                                  >
+                                    <Box item>
+                                      <Button className={classes.authorHope}>
+                                        Martin Hope
+                                      </Button>
+                                      <h2 className={classes.avtarBox}>
+                                        <RoomIcon
+                                          className={classes.roomIcon}
+                                        />
+                                        Damita, Egypt
+                                      </h2>
+                                    </Box>
+                                  </Box>
+                                  <Box
+                                    container
+                                    direction="column"
+                                    className={classes.tooltipBox}
+                                  >
+                                    <Box item className={classes.tooltipItem}>
+                                      <MenuBookIcon
+                                        className={classes.roomIcon}
+                                      />
+                                      3 Questions
+                                    </Box>
+                                    <Box item className={classes.tooltipItem}>
+                                      <InsertCommentIcon
+                                        className={classes.roomIcon}
+                                      />
+                                      0 Answers
+                                    </Box>
+                                    <Box item className={classes.tooltipItem}>
+                                      <HowToRegIcon
+                                        className={classes.roomIcon}
+                                      />
+                                      0 Best Answers
+                                    </Box>
+                                    <Box item className={classes.tooltipItem}>
+                                      <AssignmentReturnedIcon
+                                        className={classes.roomIcon}
+                                      />
+                                      756 Points
+                                    </Box>
+                                  </Box>
+
+                                  <Button
+                                    variant="Contained"
+                                    className={classes.tooltipBtn}
+                                  >
+                                    View Profile
+                                  </Button>
+                                </React.Fragment>
+                              }
+                              Add
+                              arrow
+                              interactive
+                            >
+                              <Box
+                                border={2}
+                                width="2.5rem"
+                                height="2.5rem"
+                                borderRadius="50%"
+                                padding="2px"
+                              >
+                                <Avatar alt="Martin Hope" src={teamTwo} />
+                              </Box>
+                            </StyleTooltip>
+
+                            {/* ************ Tooltip area End ********** */}
+                          </Grid>
+
+                          <Grid
+                            item
+                            // display="block"
+                            // marginTop="3rem"
+                            className={classes.itemIcon}
+                          >
+                            <ArrowDropUpIcon
+                              className={classes.aerrow}
+                              onClick={increment}
+                            />
+                            <Typography className={classes.num}>
+                              {603 + number}
+                            </Typography>
+                            <ArrowDropDownIcon
+                              className={classes.aerrow}
+                              onClick={decrement}
+                            />
+                          </Grid>
+                        </Grid>
+                        <Grid container direction="column" sx={10}>
+                          <Grid item className={classes.blogUp}>
+                            <Grid item>
+                              <Box item className={classes.quest}>
+                                <Button className={classes.authorHope}>
+                                  Martin Hope
+                                </Button>
+                                <span
+                                  variant="contained"
+                                  className={classes.span}
+                                >
+                                  Enlightened
+                                </span>
+                              </Box>
+                              <Typography
+                                button
+                                variant="h2"
+                                className={classes.statement}
+                              >
+                                Is this statement, "i see him last night" can be
+                                understood as "I saw him last night"?
+                              </Typography>
+                            </Grid>
+                          </Grid>
+                          <Grid item className={classes.subtitle}>
+                            <Typography variant="subtitle2">
+                              "In my local language (Bahasa Indonesia) there are
+                              no verb-2 or past tense form as time tracker. So,
+                              I often forget to use the past form of verb when
+                              speaking english. I saw him last night (correct) I
+                              see him last night..."
+                            </Typography>
+                          </Grid>
+                          <Grid>
+                            <Button
+                              size="small"
+                              variant="outlined"
+                              className={classes.btn}
+                            >
+                              English
+                            </Button>
+                            <Button
+                              size="small"
+                              variant="outlined"
+                              className={classes.btn}
+                            >
+                              Language
+                            </Button>
+                          </Grid>
+                          <Box container className={classes.footer}>
+                            <Button
+                              size="small"
+                              variant="outlined"
+                              startIcon={<InsertCommentIcon />}
+                              className={classes.buttenIcon}
+                            >
+                              3 Ansewrs
+                            </Button>
+                            <Box
+                              border={1}
+                              variant="contained"
+                              display="flex"
+                              className={classes.spanFoo}
+                            >
+                              {<ChildCareIcon />}
+                              12k Views
+                            </Box>
+                            <Button
+                              size="small"
+                              variant="contained"
+                              className={classes.lastBtn}
+                            >
+                              Answer
+                            </Button>
+                          </Box>
+                        </Grid>
+                      </Box>
+                      {/************* Second center End Blog ****************/}
                     </Box>
                   </section>
                 </Box>
               </Box>
             </Grid>
-
+            {/* **********Right side third container area********** */}
             <Grid container className={classes.rightContainer}>
               <Box
                 boxShadow={4}

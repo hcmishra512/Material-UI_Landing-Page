@@ -24,7 +24,6 @@ import teamTwo from "../../assets/team-2-42x42.jpg";
 import teamThree from "../../assets/team-7-42x42.jpg";
 import teamFour from "../../assets/team-1-42x42.jpg";
 import teamFive from "../../assets/team-4-42x42.jpg";
-import teamSix from "../../assets/team-6-42x42.jpg";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import InsertCommentIcon from "@material-ui/icons/InsertComment";
@@ -195,8 +194,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#d9a34a",
     marginRight: "15px",
     marginLeft: "5px",
-    paddingTop: "0px",
-    paddingBottom: "1px",
+    paddingTop: "1px",
+    paddingBottom: "2px",
     paddingLeft: "2px",
     paddingRight: "2px",
     color: "white",
@@ -1454,11 +1453,7 @@ export default function LandingPage(props) {
                           <Button className={classes.authorName}>
                             Aaron Aiken
                           </Button>
-                          <span
-                            variant="contained"
-                            style={{ backgroundColor: "#212121" }}
-                            className={classes.span}
-                          >
+                          <span variant="contained" className={classes.span}>
                             Beginner
                           </span>
                         </Box>
@@ -1474,11 +1469,7 @@ export default function LandingPage(props) {
                             <Button className={classes.authorName}>
                               Aaron Aken
                             </Button>
-                            <span
-                              variant="contained"
-                              style={{ backgroundColor: "#212121" }}
-                              className={classes.span}
-                            >
+                            <span variant="contained" className={classes.span}>
                               Beginner
                             </span>
                           </Box>
@@ -1821,265 +1812,6 @@ export default function LandingPage(props) {
                     </Grid>
                   </Box>
                   {/* ***-------Four Container End------*** */}
-
-                  {/* ***-------Five Container start------*** */}
-                  <Box container borderBottom={1} className={classes.innerItem}>
-                    <Grid container>
-                      <Box item>
-                        {/* *************Tooltip Area start************** */}
-                        <StyleTooltip
-                          title={
-                            <React.Fragment>
-                              <Box
-                                item
-                                display="flex"
-                                className={classes.avtarBox}
-                              >
-                                <Box
-                                  item
-                                  border={2}
-                                  width="4.5rem"
-                                  height="4.5rem"
-                                  borderRadius="50%"
-                                  color="#3d5afe"
-                                  padding="2px"
-                                >
-                                  <Avatar
-                                    alt="James Wane"
-                                    src={teamSix}
-                                    className={classes.large}
-                                  />
-                                </Box>
-                              </Box>
-                              <Box
-                                container
-                                direction="column"
-                                className={classes.avtarBox}
-                              >
-                                <Box item className={classes.tooltipList}>
-                                  <Grid item style={{ marginLeft: "0em" }}>
-                                    <Button
-                                      style={{ marginLeft: "1em" }}
-                                      className={classes.authorName}
-                                    >
-                                      James Wane
-                                    </Button>
-                                  </Grid>
-                                  <Typography
-                                    variant="body2"
-                                    className={classes.avtarBox}
-                                  >
-                                    <RoomIcon className={classes.roomIcon} />
-                                    Tanta, Egypt
-                                  </Typography>
-                                </Box>
-                              </Box>
-                              <Box
-                                container
-                                direction="column"
-                                className={classes.tooltipBox}
-                              >
-                                <Box item>
-                                  <Button className={classes.insideBtn}>
-                                    <MenuBookIcon
-                                      className={classes.roomIcon}
-                                    />
-                                    3 Questions
-                                  </Button>
-                                </Box>
-                                <Box item>
-                                  <Button className={classes.insideBtn}>
-                                    <InsertCommentIcon
-                                      className={classes.roomIcon}
-                                    />
-                                    0 Answers
-                                  </Button>
-                                </Box>
-                                <Box item>
-                                  <Button className={classes.insideBtn}>
-                                    <HowToRegIcon
-                                      className={classes.roomIcon}
-                                    />
-                                    0 Best Answers
-                                  </Button>
-                                </Box>
-                                <Box item>
-                                  <Button className={classes.insideBtn}>
-                                    <AssignmentReturnedIcon
-                                      className={classes.roomIcon}
-                                    />
-                                    236 Points
-                                  </Button>
-                                </Box>
-                              </Box>
-
-                              <Button
-                                variant="Contained"
-                                className={classes.tooltipBtn}
-                              >
-                                View Profile
-                              </Button>
-                            </React.Fragment>
-                          }
-                          Add
-                          arrow
-                          interactive
-                        >
-                          <Box
-                            item
-                            border={2}
-                            marginLeft="-5px"
-                            width="2.5rem"
-                            height="2.5rem"
-                            borderRadius="50%"
-                            padding="2px"
-                          >
-                            <Avatar alt="James Wane" src={teamSix} />
-                          </Box>
-                        </StyleTooltip>
-
-                        {/* ************ Tooltip area End ********** */}
-                      </Box>
-                      <Hidden mdUp>
-                        <Grid className={classes.itemArrow}>
-                          <ArrowDropUpIcon
-                            className={classes.aerrow}
-                            onClick={increment}
-                          />
-                          <Typography className={classes.num}>
-                            {51 + number}
-                          </Typography>
-                          <ArrowDropDownIcon
-                            className={classes.aerrow}
-                            onClick={decrement}
-                          />
-                        </Grid>
-                        <Box container marginLeft={2} className={classes.quest}>
-                          <Button className={classes.authorName}>
-                            James Wane
-                          </Button>
-                          <span
-                            variant="contained"
-                            style={{ backgroundColor: "#651fff" }}
-                            className={classes.span}
-                          >
-                            Professional
-                          </span>
-                        </Box>
-                      </Hidden>
-
-                      <Grid item xs={12} sm={11}>
-                        <Hidden mdDown>
-                          <Box
-                            container
-                            marginLeft={2}
-                            className={classes.quest}
-                          >
-                            <Button className={classes.authorName}>
-                              James Wane
-                            </Button>
-                            <span
-                              variant="contained"
-                              style={{ backgroundColor: "#651fff" }}
-                              className={classes.span}
-                            >
-                              Professional
-                            </span>
-                          </Box>
-                        </Hidden>
-                        <Box className={classes.boldItem}>
-                          <Typography
-                            button
-                            variant="h4"
-                            style={{ paddingTop: "5px" }}
-                            className={classes.statement}
-                          >
-                            What are your thoughts on Google Analytics vs other
-                            analytics platforms?
-                          </Typography>
-                        </Box>
-                      </Grid>
-                      <Hidden mdDown>
-                        <Grid>
-                          <Grid className={classes.itemArrow}>
-                            <ArrowDropUpIcon
-                              className={classes.aerrow}
-                              onClick={increment}
-                            />
-                            <Typography
-                              style={{ paddingLeft: "5px" }}
-                              className={classes.num}
-                            >
-                              {57 + number}
-                            </Typography>
-                            <ArrowDropDownIcon
-                              className={classes.aerrow}
-                              onClick={decrement}
-                            />
-                          </Grid>
-                        </Grid>
-                      </Hidden>
-
-                      <Grid xs={12} sm={11}>
-                        <Box marginLeft={2} item className={classes.subtitle}>
-                          <Typography
-                            variant="subtitle2"
-                            style={{ paddingTop: "5px" }}
-                          >
-                            Recently heard about Heap which seems pretty cool,
-                            but I'm not sure if it would really be valuable, or
-                            simply another tool that I need to check. We are not
-                            at the point of using HubSpot/Marketo yet so Heap's
-                            free ...
-                          </Typography>
-                          <Grid>
-                            <Button
-                              size="small"
-                              variant="outlined"
-                              className={classes.btn}
-                            >
-                              analytics
-                            </Button>
-                            <Button
-                              size="small"
-                              variant="outlined"
-                              className={classes.btn}
-                            >
-                              google
-                            </Button>
-                          </Grid>
-
-                          <Box container className={classes.footer}>
-                            <Button
-                              size="small"
-                              variant="outlined"
-                              startIcon={<InsertCommentIcon />}
-                              className={classes.buttenIcon}
-                            >
-                              0 Ansewrs
-                            </Button>
-                            <Box
-                              border={1}
-                              variant="contained"
-                              display="flex"
-                              className={classes.spanFoo}
-                            >
-                              {<ChildCareIcon />}
-                              964 Views
-                            </Box>
-                            <Button
-                              size="small"
-                              variant="contained"
-                              className={classes.lastBtn}
-                            >
-                              Answer
-                            </Button>
-                          </Box>
-                        </Box>
-                      </Grid>
-                    </Grid>
-                  </Box>
-                  {/* ***-------Five Container End------*** */}
                 </section>
               </Box>
             </Grid>

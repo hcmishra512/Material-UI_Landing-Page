@@ -85,11 +85,11 @@ function ScrollTop(props) {
 
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
-    ...theme.mixins.toolbar,
-    morginBottom: "2rem",
-    [theme.breakpoints.down("md")]: {
-      marginBottom: "0em",
-    },
+    // ...theme.mixins.toolbar,
+    marginBottom: "3.6rem",
+    // [theme.breakpoints.down("md")]: {
+    //   marginBottom: "3em",
+    // },
   },
   appBar: {
     [theme.breakpoints.down("md")]: {},
